@@ -1,11 +1,9 @@
 class JournalEntriesController < ApplicationController
     def get_entries_by_month
-      # If no month is provided, aggregate by all months
       unless params[:month].present?
         render json: { error: 'Month is required' }, status: :unprocessable_entity and return
       end
 
-        # Parse the provided month to get the start and end datetime of the month
         puts "params[:month]: #{params[:month]}"
         begin
           month = Date.parse(params[:month]+ "-01") # e.g. "2025-01" will be parsed to January 2025
